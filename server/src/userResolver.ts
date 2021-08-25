@@ -1,3 +1,4 @@
+import { sendRefreshToken } from './utils/sendrefreshToken';
 import { createRefreshToken, createAccessToken } from './utils/auth';
 import { MyContext } from './MyContext';
 import { User } from './entity/User';
@@ -80,7 +81,7 @@ export class UserResolver {
     //   login successful
 
     // refreshtoken
-    res.cookie('jid', createRefreshToken(user), { httpOnly: true });
+    sendRefreshToken(res, createRefreshToken(user));
 
     // accesstoken
     return {
